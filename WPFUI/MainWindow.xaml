@@ -50,7 +50,7 @@
             <Label Grid.Row="1" Grid.Column="0" Content="Class:"/>
             <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPlayer.CharacterClass}"/>
             <Label Grid.Row="2" Grid.Column="0" Content="Hit points:"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentPlayer.HitPoints}"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentPlayer.CurrentHitPoints}"/>
             <Label Grid.Row="3" Grid.Column="0" Content="Gold:"/>
             <Label Grid.Row="3" Grid.Column="1" Content="{Binding CurrentPlayer.Gold}"/>
             <Label Grid.Row="4" Grid.Column="0" Content="XP:"/>
@@ -150,7 +150,7 @@
                                 HorizontalAlignment="Center"
                                 Orientation="Horizontal">
                         <TextBlock>Current Hit Points:</TextBlock>
-                        <TextBlock Text="{Binding CurrentMonster.HitPoints}" />
+                        <TextBlock Text="{Binding CurrentMonster.CurrentHitPoints}" />
                     </StackPanel>
 
                 </Grid>
@@ -208,7 +208,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="255" />
             </Grid.ColumnDefinitions>
-            
+
             <!-- Combat Controls -->
             <Grid Grid.Row="0" Grid.Column="0"
                   Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
@@ -235,8 +235,8 @@
                         Content="Use"
                         Click="OnClick_AttackMonster"/>
             </Grid>
-            
-            <!--Movement Controls-->
+
+            <!-- Movement Controls -->
             <Grid Grid.Row="0" Grid.Column="1">
 
                 <Grid.RowDefinitions>
@@ -261,6 +261,11 @@
                         Click="OnClick_MoveWest"
                         Visibility="{Binding HasLocationToWest, Converter={StaticResource BooleanToVisibility}}"
                         Content="West"/>
+                <Button Grid.Row="1" Grid.Column="1"
+                        Height="25" Width="65" Margin="10"
+                        Click="OnClick_DisplayTradeScreen"
+                        Visibility="{Binding HasTrader, Converter={StaticResource BooleanToVisibility}}"
+                        Content="Trade"/>
                 <Button Grid.Row="1" Grid.Column="2"
                         Height="25" Width="65" Margin="10"
                         Click="OnClick_MoveEast"

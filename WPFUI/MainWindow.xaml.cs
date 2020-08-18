@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
+﻿using System.Windows;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Engine.ViewModels;
 using Engine.EventArgs;
-using Engine.Models;
+using Engine.ViewModels;
 
 namespace WPFUI
 {
@@ -30,7 +17,7 @@ namespace WPFUI
             InitializeComponent();
 
             _gameSession.OnMessageRaised += OnGameMessageRaised;
-            
+
             DataContext = _gameSession;
         }
 
@@ -54,15 +41,23 @@ namespace WPFUI
             _gameSession.MoveSouth();
         }
 
+        private void OnClick_AttackMonster(object sender, RoutedEventArgs e)
+        {
+            _gameSession.AttackCurrentMonster();
+        }
+
         private void OnGameMessageRaised(object sender, GameMessageEventArgs e)
         {
             GameMessages.Document.Blocks.Add(new Paragraph(new Run(e.Message)));
             GameMessages.ScrollToEnd();
         }
 
-        private void OnClick_AttackMonster(object sender, RoutedEventArgs e)
+        private void OnClick_DisplayTradeScreen(object sender, RoutedEventArgs e)
         {
-            _gameSession.AttackCurrentMonster();
+            TradeScreen tradeScreen = new TradeScreen();
+            tradeScreen.Owner = this;
+            tradeScreen.DataContext = _gameSession;
+            tradeScreen.ShowDialog();
         }
     }
 }
