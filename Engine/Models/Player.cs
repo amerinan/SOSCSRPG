@@ -73,7 +73,7 @@ namespace Engine.Models
         {
             int originalLevel = Level;
 
-            Level = (ExperiencePoints / 100) + 1;
+            Level = (int)(((Math.Sqrt(625 + (100 * ExperiencePoints)) - 25) / 50) + 1);
 
             if (Level != originalLevel)
             {
