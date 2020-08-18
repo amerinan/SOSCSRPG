@@ -29,7 +29,7 @@ namespace Engine.Factories
 
             newWorld.AddLocation(-1, 0, "Trading Shop",
                 "The shop of Susan, the trader.",
-                "/Engine;component/Images/Locations/Trader.png");
+                "Trader.png");
             newWorld.LocationAt(-1, 0).TraderHere = TraderFactory.GetTraderByName("Susan"); 
 
             newWorld.AddLocation(0, 0, "Town square",
